@@ -6,6 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="firstproject.cs496.merge.MainActivity$PlaceholderFragment">
 <!--todo -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefreshLayout">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/phonenumber_recycler_view"
         android:layout_width="match_parent"
@@ -16,5 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/phonenumber_item"
         />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.constraint.ConstraintLayout>
 

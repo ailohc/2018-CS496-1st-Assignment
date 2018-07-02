@@ -6,9 +6,11 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.ContactsContract
 import android.support.v4.app.Fragment
 import android.support.v4.content.PermissionChecker.checkSelfPermission
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -19,7 +21,7 @@ import firstproject.cs496.merge.MainActivity.Companion.contactsList
 import firstproject.cs496.merge.R
 import firstproject.cs496.merge.PhoneNumber
 import firstproject.cs496.merge.PhoneNumberAdapter
-
+import kotlinx.android.synthetic.main.fragment_first.*
 
 
 class FirstFragment() : Fragment() {
@@ -45,3 +47,7 @@ class FirstFragment() : Fragment() {
     }
 
 }
+
+
+
+
