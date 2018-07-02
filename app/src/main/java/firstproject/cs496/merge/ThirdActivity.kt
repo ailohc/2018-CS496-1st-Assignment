@@ -28,7 +28,7 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_third)
+        setContentView(R.layout.activity_third)
         cameraView = findViewById(R.id.cameraView)
         imageViewResult = findViewById(R.id.imageViewResult)
         textViewResult = findViewById(R.id.textViewResult)
