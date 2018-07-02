@@ -51,9 +51,10 @@ class ThirdActivity : AppCompatActivity() {
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
 
                 val results = classifier!!.recognizeImage(bitmap)
-
-                textViewResult!!.text = results.toString()
-
+                var resulttext = results.toString()
+                val separate = resulttext.split("[","]","(",")")
+                val toptext = "The Object might be" + separate[3] + "with " + separate[4] +" percentage"
+                textViewResult!!.text = toptext
             }
 
             override fun onVideo(cameraKitVideo: CameraKitVideo) {

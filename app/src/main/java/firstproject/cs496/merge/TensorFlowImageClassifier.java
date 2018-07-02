@@ -102,7 +102,6 @@ public class TensorFlowImageClassifier implements Classifier {
 
     @SuppressLint("DefaultLocale")
     private List<Recognition> getSortedResult(byte[][] labelProbArray) {
-
         PriorityQueue<Recognition> pq =
                 new PriorityQueue<>(
                         MAX_RESULTS,
@@ -121,13 +120,8 @@ public class TensorFlowImageClassifier implements Classifier {
                         confidence));
             }
         }
-
         final ArrayList<Recognition> recognitions = new ArrayList<>();
-        int recognitionsSize = Math.min(pq.size(), MAX_RESULTS);
-        for (int i = 0; i < recognitionsSize; ++i) {
-            recognitions.add(pq.poll());
-        }
-
+        recognitions.add(pq.poll());
         return recognitions;
     }
 
