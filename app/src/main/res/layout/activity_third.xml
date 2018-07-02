@@ -25,12 +25,6 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageViewResult"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:padding="2dp" />
-
         <TextView
             android:id="@+id/textViewResult"
             android:layout_width="match_parent"

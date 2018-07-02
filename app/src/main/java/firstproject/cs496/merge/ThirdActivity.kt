@@ -22,7 +22,6 @@ class ThirdActivity : AppCompatActivity() {
     private var textViewResult: TextView? = null
     private var btnDetectObject: Button? = null
     private var btnToggleCamera: Button? = null
-    private var imageViewResult: ImageView? = null
     private var cameraView: CameraView? = null
 
 
@@ -30,7 +29,6 @@ class ThirdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_third)
         cameraView = findViewById(R.id.cameraView)
-        imageViewResult = findViewById(R.id.imageViewResult)
         textViewResult = findViewById(R.id.textViewResult)
         textViewResult!!.movementMethod = ScrollingMovementMethod()
 
@@ -51,8 +49,6 @@ class ThirdActivity : AppCompatActivity() {
                 var bitmap = cameraKitImage.bitmap
 
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
-
-                imageViewResult!!.setImageBitmap(bitmap)
 
                 val results = classifier!!.recognizeImage(bitmap)
 
