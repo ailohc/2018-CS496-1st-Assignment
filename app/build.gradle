@@ -23,6 +23,11 @@ android {
     dataBinding {
         enabled = true
     }
+    android {
+        aaptOptions {
+            noCompress "tflite"
+        }
+    }
 }
 
 dependencies {
@@ -41,4 +46,11 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation "org.jetbrains.anko:anko-common:$anko_version"
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+    //for classifying images
+    implementation 'com.wonderkiln:camerakit:0.13.1'
+    implementation 'org.tensorflow:tensorflow-lite:+'
 }
+repositories {
+    mavenCentral()
+}
+
