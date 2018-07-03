@@ -8,18 +8,42 @@ tools:context="firstproject.cs496.merge.ThirdFragment">
 <!--todo -->
     <Button
         android:id="@+id/button1"
-        android:layout_width="263dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="290dp"
+        android:layout_width="301dp"
+        android:layout_height="312dp"
+        android:layout_marginBottom="151dp"
         android:layout_marginEnd="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginRight="148dp"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="229dp"
-        android:text="Start"
+        android:layout_marginTop="104dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="300dp"
+        android:layout_height="313dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/oval"
+        android:gravity="center"
+        android:text="START
+            CLASSIFYING"
+        android:textColor="#D9C182B6"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>
 

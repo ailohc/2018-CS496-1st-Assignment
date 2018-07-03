@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#FFFFFF"
     >
 
     <GridView
@@ -14,12 +14,12 @@
         android:paddingBottom="15dp"
         android:columnWidth="100dp"
         android:gravity="center|bottom"
-        android:horizontalSpacing="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:horizontalSpacing="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:numColumns="3"
         android:stretchMode="spacingWidth"
-        android:verticalSpacing="20dp"
+        android:verticalSpacing="5dp"
         android:visibility="visible"
         />
 

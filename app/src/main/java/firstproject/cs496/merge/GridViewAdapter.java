@@ -43,7 +43,7 @@ public class GridViewAdapter extends ArrayAdapter<Product> {
         img.setImageBitmap(image);
         txt.setText(product.getFileName());
 
-        img.setScaleType(ImageView.ScaleType.FIT_START);
+        img.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         return v;
     }

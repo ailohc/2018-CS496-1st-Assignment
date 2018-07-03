@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="120dp"
@@ -29,7 +29,7 @@
         android:gravity="center"
         android:maxLines="15"
         android:scrollbars="vertical"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white" />
 
 
     <Button
@@ -41,7 +41,8 @@
         android:layout_gravity="bottom|center"
         android:text="@string/toggle_camera"
         android:textAllCaps="false"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white"
+        android:background="#00FFFFFF"/>
 
     <Button
         android:id="@+id/btnDetectObject"
@@ -52,6 +53,7 @@
         android:layout_gravity="bottom|center"
         android:text="@string/detect_object"
         android:textAllCaps="false"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white"
+        android:background="#00FFFFFF"/>
 
 </RelativeLayout>

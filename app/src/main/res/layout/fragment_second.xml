@@ -18,13 +18,6 @@ tools:context="firstproject.cs496.merge.SecondFragment">
     android:layout="@layout/my_gridview"
     />
 
-<Button
-    android:id="@+id/button"
-    android:layout_margin="50dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="View Images"
-    />
 
 <ImageView
     android:id="@+id/imgPicture"

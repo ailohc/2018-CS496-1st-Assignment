@@ -83,10 +83,6 @@ public class SecondFragment extends Fragment {
 
         imgPicture = (ImageView) rootview.findViewById(R.id.imgPicture);
 
-        button = rootview.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 stubGrid = (ViewStub) rootview.findViewById(R.id.stub_grid);
                 stubGrid.inflate();
                 gridView = (GridView) rootview.findViewById(R.id.mygridview);
@@ -105,8 +101,8 @@ public class SecondFragment extends Fragment {
                     }
                 });
 
-            }
-        });
+
+
         return rootview;
     }
 
