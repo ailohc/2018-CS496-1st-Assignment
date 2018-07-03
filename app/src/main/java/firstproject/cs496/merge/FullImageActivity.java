@@ -91,21 +91,19 @@ public class FullImageActivity extends Activity {
         Bitmap image = BitmapFactory.decodeFile(imageUri.getPath());
 
         imageView.setImageBitmap(image);
-        Log.d("hiiiiiii", "123244222");
         Bitmap classifyimage = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
-        Log.d("hiiiiiii1", "123244222");
         textResult = findViewById(R.id.textResult);
-        Log.d("hiiiiiiii2", "123244222");
         initTensorFlowAndLoadModel();
-        Log.d("hiiiiiiii3", "123244222");
-        List<Classifier.Recognition> results = classifier.recognizeImage(classifyimage);
-        Log.d("hiiiiiiii4", "123244222");
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<Classifier.Recognition> results;
+        results = classifier.recognizeImage(classifyimage);
+
         textResult.setText(results.toString());
-
-        Log.d("hiiiiiiii5", "123244222");
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        Log.d("hiiiiiiii6", "123244222");
-
     }
 
     private void initTensorFlowAndLoadModel() {
