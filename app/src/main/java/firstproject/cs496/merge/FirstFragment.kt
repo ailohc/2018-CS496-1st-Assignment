@@ -44,7 +44,7 @@ class FirstFragment() : Fragment() {
         recyclerView.layoutManager = formanage
         recyclerView.setHasFixedSize(false)
         return rootView
-    }
+}
 
 }
 

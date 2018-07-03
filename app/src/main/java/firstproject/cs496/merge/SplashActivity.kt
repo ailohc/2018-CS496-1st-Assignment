@@ -36,6 +36,17 @@ class SplashActivity : AppCompatActivity() {
                     SplashActivity.PERMISSIONS_REQUEST_READ_CONTACTS)
             //callback onRequestPermissionsResult
         }
+
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            }
+
+            val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 10
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
+        }
         mDelayHandler = Handler()
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
         // Start home activity
