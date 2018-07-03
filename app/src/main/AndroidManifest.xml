@@ -23,6 +23,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".FullImageActivity"></activity>
         <activity android:name=".ThirdActivity" />
+        <activity android:name=".ContactDetailsActivity"/>
     </application>
 
 </manifest>

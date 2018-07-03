@@ -15,6 +15,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.net.Uri
+import android.net.Uri.withAppendedPath
+import java.io.BufferedInputStream
+
 
 class MainActivity : AppCompatActivity() {
     private var mSectionsPagerAdapter: PageAdapter?=null
@@ -47,19 +53,31 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     private fun getContacts() : ArrayList<PhoneNumber> {
         val phoneNumberList = ArrayList<PhoneNumber>()
         val resolver: ContentResolver = contentResolver;
+        val default_photo = BitmapFactory.decodeResource(this@MainActivity.getApplicationContext().getResources(), R.drawable.profile_pic)
+        var contactImage: String
+        val contentResolver = this@MainActivity.getContentResolver()
         val cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null,
                 null)
 
         if (cursor.count > 0) {
             while (cursor.moveToNext()) {
                 val id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
+                val my_contact_Uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, id)
+                val photo_stream = ContactsContract.Contacts.openContactPhotoInputStream(this@MainActivity.getContentResolver(), my_contact_Uri)
                 val name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
                 val phoneNumber = (cursor.getString(
                         cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))).toInt()
-
+                if (photo_stream != null) {
+                    val buf = BufferedInputStream(photo_stream)
+                    contactImage = buf.toString()
+                }
+                else {
+                    contactImage = default_photo.toString()
+                }
                 if (phoneNumber > 0) {
                     val cursorPhone = contentResolver.query(
                             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -69,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                         while (cursorPhone.moveToNext()) {
                             val phoneNumValue = cursorPhone.getString(
                                     cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                            phoneNumberList.add(PhoneNumber(name, phoneNumValue))
+                            phoneNumberList.add(PhoneNumber(name, phoneNumValue, contactImage))
                         }
                     }
                     cursorPhone.close()
@@ -82,3 +100,4 @@ class MainActivity : AppCompatActivity() {
         return phoneNumberList
     }
 }
+
