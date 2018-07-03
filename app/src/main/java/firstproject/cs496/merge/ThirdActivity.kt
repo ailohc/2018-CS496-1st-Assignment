@@ -22,15 +22,13 @@ class ThirdActivity : AppCompatActivity() {
     private var textViewResult: TextView? = null
     private var btnDetectObject: Button? = null
     private var btnToggleCamera: Button? = null
-    private var imageViewResult: ImageView? = null
     private var cameraView: CameraView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_third)
+        setContentView(R.layout.activity_third)
         cameraView = findViewById(R.id.cameraView)
-        imageViewResult = findViewById(R.id.imageViewResult)
         textViewResult = findViewById(R.id.textViewResult)
         textViewResult!!.movementMethod = ScrollingMovementMethod()
 
@@ -52,12 +50,11 @@ class ThirdActivity : AppCompatActivity() {
 
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
 
-                imageViewResult!!.setImageBitmap(bitmap)
-
                 val results = classifier!!.recognizeImage(bitmap)
-
-                textViewResult!!.text = results.toString()
-
+                var resulttext = results.toString()
+                val separate = resulttext.split("[","]","(",")")
+                val toptext = "The Object might be" + separate[3] + "with " + separate[4] +" percentage"
+                textViewResult!!.text = toptext
             }
 
             override fun onVideo(cameraKitVideo: CameraKitVideo) {

@@ -1,66 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/activity_main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:paddingBottom="@dimen/activity_vertical_margin"
-android:paddingLeft="@dimen/activity_horizontal_margin"
-android:paddingRight="@dimen/activity_horizontal_margin"
-android:paddingTop="@dimen/activity_vertical_margin"
-tools:context="firstproject.cs496.merge.ThirdActivity">
-
-    <com.wonderkiln.camerakit.CameraView
-        android:id="@+id/cameraView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center|top" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="center|top"
-        android:layout_marginTop="300dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageViewResult"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:padding="2dp" />
-
-        <TextView
-            android:id="@+id/textViewResult"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:fadeScrollbars="false"
-            android:gravity="center"
-            android:maxLines="15"
-            android:scrollbars="vertical"
-            android:textColor="@android:color/black" />
-
-    </LinearLayout>
-
-
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context="firstproject.cs496.merge.ThirdFragment">
+<!--todo -->
     <Button
-        android:id="@+id/btnToggleCamera"
-        android:layout_width="match_parent"
+        android:id="@+id/button1"
+        android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="50dp"
-        android:text="@string/toggle_camera"
-        android:textAllCaps="false"
-        android:textColor="@android:color/black" />
+        android:layout_marginBottom="290dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginRight="148dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="229dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btnDetectObject"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom|center"
-        android:text="@string/detect_object"
-        android:textAllCaps="false"
-        android:textColor="@android:color/black" />
-
-</FrameLayout>

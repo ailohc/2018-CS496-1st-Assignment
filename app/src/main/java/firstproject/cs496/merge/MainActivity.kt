@@ -21,20 +21,12 @@ class MainActivity : AppCompatActivity() {
     private var mViewPager: ViewPager? = null
 
     companion object {
-        val PERMISSIONS_REQUEST_READ_CONTACTS = 100
         public var contactsList: ArrayList<PhoneNumber>? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
-                        Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS),
-                    PERMISSIONS_REQUEST_READ_CONTACTS)
-            //callback onRequestPermissionsResult
-        }
         mSectionsPagerAdapter = PageAdapter(supportFragmentManager)
         mViewPager = findViewById<ViewPager?>(R.id.container)
         mViewPager!!.adapter = mSectionsPagerAdapter
