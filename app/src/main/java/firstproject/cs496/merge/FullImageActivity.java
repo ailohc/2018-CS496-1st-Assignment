@@ -8,15 +8,27 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class FullImageActivity extends Activity {
     private List<Product> productList;
+    private static final String MODEL_PATH = "mobilenet_quant_v1_224.tflite";
+    private static final String LABEL_PATH = "labels.txt";
+    private static final int INPUT_SIZE = 224;
+    private TextView textResult;
+    private Classifier classifier;
+    private Executor executor = Executors.newSingleThreadExecutor();
+
 
     public List<Product> getProductList(){
 
@@ -79,11 +91,38 @@ public class FullImageActivity extends Activity {
         Bitmap image = BitmapFactory.decodeFile(imageUri.getPath());
 
         imageView.setImageBitmap(image);
+        Bitmap classifyimage = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
+        textResult = findViewById(R.id.textResult);
+        initTensorFlowAndLoadModel();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<Classifier.Recognition> results;
+        results = classifier.recognizeImage(classifyimage);
 
-
+        textResult.setText(results.toString());
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-
     }
 
+    private void initTensorFlowAndLoadModel() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    classifier = TensorFlowImageClassifier.create(
+                            getAssets(),
+                            MODEL_PATH,
+                            LABEL_PATH,
+                            INPUT_SIZE);
+                } catch (final Exception e) {
+                    throw new RuntimeException("Error initializing TensorFlow!", e);
+                }
+            }
+        });
+    }
+
+
 }
+
