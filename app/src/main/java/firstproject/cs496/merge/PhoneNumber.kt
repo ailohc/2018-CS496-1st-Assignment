@@ -1,54 +1,37 @@
 package firstproject.cs496.merge
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.os.Parcel
+import android.os.Parcelable
 import org.json.JSONException
 import org.json.JSONObject
 import android.provider.ContactsContract
 
+data class PhoneNumber (var name: String?, var phone: String?,var image: Bitmap?) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readParcelable(Bitmap::class.java.classLoader)) {
+    }
 
-class PhoneNumber(
-        val name: String,
-        val phonenumber: String) {
-/*
-    companion object {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeString(phone)
+        parcel.writeParcelable(image, flags)
+    }
 
-        fun getContactsFromFile(filename: String, context: Context): ArrayList<PhoneNumber> {
-            val phoneNumberList = ArrayList<PhoneNumber>()
+    override fun describeContents(): Int {
+        return 0
+    }
 
-            try {
-                // Load data
-                val jsonString = loadJsonFromAsset("phone_number.json", context)
-                val json = JSONObject(jsonString)
-                val phnumbers = json.getJSONArray("phnumbers")
-
-                (0 until phnumbers.length()).mapTo(phoneNumberList) {
-                    PhoneNumber(phnumbers.getJSONObject(it).getString("name"),
-                            phnumbers.getJSONObject(it).getString("phonenumber"))
-                }
-            } catch (e: JSONException) {
-                e.printStackTrace()
-            }
-
-            return phoneNumberList
+    companion object CREATOR : Parcelable.Creator<PhoneNumber> {
+        override fun createFromParcel(parcel: Parcel): PhoneNumber {
+            return PhoneNumber(parcel)
         }
 
-        private fun loadJsonFromAsset(filename: String, context: Context): String? {
-            var json: String? = null
-
-            try {
-                val inputStream = context.assets.open(filename)
-                val size = inputStream.available()
-                val buffer = ByteArray(size)
-                inputStream.read(buffer)
-                inputStream.close()
-                json = String(buffer, Charsets.UTF_8)
-            } catch (ex: java.io.IOException) {
-                ex.printStackTrace()
-                return null
-            }
-
-            return json
+        override fun newArray(size: Int): Array<PhoneNumber?> {
+            return arrayOfNulls(size)
         }
-    }*/
-
+    }
 }

@@ -15,7 +15,7 @@ import android.os.Build
 class SplashActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 3000 //3 seconds
+    private val SPLASH_DELAY: Long = 5000 //3 seconds
 
     companion object {
         val PERMISSIONS_REQUEST_READ_CONTACTS = 100
@@ -46,6 +46,40 @@ class SplashActivity : AppCompatActivity() {
             val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 10
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
+        }
+
+        if (checkSelfPermission(Manifest.permission.CALL_PHONE) !== PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.CALL_PHONE)) {
+            }
+
+            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
+            requestPermissions(arrayOf(Manifest.permission.CALL_PHONE),
+                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
+        }
+
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) !== PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.SEND_SMS)) {
+            }
+
+            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
+            requestPermissions(arrayOf(Manifest.permission.SEND_SMS),
+                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
+        }
+
+
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            }
+
+            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
         }
         mDelayHandler = Handler()
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
