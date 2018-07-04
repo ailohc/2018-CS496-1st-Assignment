@@ -22,6 +22,8 @@ import org.w3c.dom.Text;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class CustomSwipeAdapter extends PagerAdapter {
   //  private List<Product> productList;
@@ -29,6 +31,12 @@ public class CustomSwipeAdapter extends PagerAdapter {
     private List<Product> image_resources;
     private Context ctx;
     private LayoutInflater layoutInflater;
+    private static final String MODEL_PATH = "mobilenet_quant_v1_224.tflite";
+    private static final String LABEL_PATH = "labels.txt";
+    private static final int INPUT_SIZE = 224;
+    private TextView textResult;
+    private Classifier classifier;
+    private Executor executor = Executors.newSingleThreadExecutor();
 
     public CustomSwipeAdapter(Context ctx){
         this.ctx = ctx;
@@ -101,7 +109,20 @@ public class CustomSwipeAdapter extends PagerAdapter {
         imageView.setImageBitmap(image);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         //textView.setText("Image : " +position);
-        textView.setText("hello world");
+        imageView.setImageBitmap(image);
+        Bitmap classifyimage = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
+        initTensorFlowAndLoadModel();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<Classifier.Recognition> results;
+
+        results = classifier.recognizeImage(classifyimage);
+
+        textView.setText(results.toString());
+
         container.addView(item_view);
 
         return item_view;
@@ -110,5 +131,23 @@ public class CustomSwipeAdapter extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((LinearLayout) object);
+    }
+
+
+    private void initTensorFlowAndLoadModel() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    classifier = TensorFlowImageClassifier.create(
+                            ctx.getAssets(),
+                            MODEL_PATH,
+                            LABEL_PATH,
+                            INPUT_SIZE);
+                } catch (final Exception e) {
+                    throw new RuntimeException("Error initializing TensorFlow!", e);
+                }
+            }
+        });
     }
 }

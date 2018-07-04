@@ -57,16 +57,6 @@ class ThirdActivity : AppCompatActivity() {
 
         btnToggleCamera = findViewById(R.id.btnToggleCamera)
         btnDetectObject = findViewById(R.id.btnDetectObject)
-        btnCaptureImage = findViewById(R.id.btnCaptureImage)
-
-        container = findViewById(R.id.activity_third)
-        var width_container = container!!.width
-        var height_container = container!!.height
-
-        container!!.setDrawingCacheEnabled(true)
-        container!!.buildDrawingCache(true)
-
-
 
 
         cameraView!!.addCameraKitListener(object : CameraKitEventListener {
@@ -100,85 +90,7 @@ class ThirdActivity : AppCompatActivity() {
 
         btnDetectObject!!.setOnClickListener { cameraView!!.captureImage() }
 
-        btnCaptureImage!!.setOnClickListener {
-            /* val CAPTURE_PATH = "/CAPTURE_TEST"
-            val root = this.getWindow().getDecorView().getRootView()
-            root.setDrawingCacheEnabled(true)
-            root.buildDrawingCache()
-            val screenshot = root.getDrawingCache()
-            val location = IntArray(2)
-            root.getLocationInWindow(location)
-            val bmp = Bitmap.createBitmap(screenshot, location[0], location[1], root.width, root.height, null, false)
-            val strFolderPath = Environment.getExternalStorageDirectory().getAbsolutePath() + CAPTURE_PATH
-            val folder = File(strFolderPath)
-            if (!folder.exists()) {
-                folder.mkdirs()
-            }
-            val strFilePath = strFolderPath + "/" + System.currentTimeMillis() + ".png"
-            val fileCacheItem = File(strFilePath)
-            var out: OutputStream? = null
-            try {
-                fileCacheItem.createNewFile()
-                out = FileOutputStream(fileCacheItem)
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, out)
-                Log.d("##################", "saved")
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            finally {
-                try {
-                    out?.close();
-                }
-                catch (e : IOException) {
-                    e.printStackTrace();
-                }
-            }*/
-            /* val CAPTURE_PATH = "/CAPTURE_TEST"
-            container!!.buildDrawingCache()
-            val captureView = container!!.getDrawingCache()
-            var fos: FileOutputStream
-            val strFolderPath = Environment.getExternalStorageDirectory().absolutePath + CAPTURE_PATH
-            val folder = File(strFolderPath)
-            if (!folder.exists()) {
-                folder.mkdirs()
-            }
-            val strFilePath = strFolderPath + "/" + System.currentTimeMillis() + ".png"
-            val fileCacheItem = File(strFilePath)
-            try {
-                fos = FileOutputStream(fileCacheItem);
-                captureView.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace();
-            }
-        }*/
-            val folder = "Test_Directory"
-            try {
-                val formatter = SimpleDateFormat("yyyyMMddHHmmss")
-                val currentTime_1 = Date()
-                val dateString = formatter.format(currentTime_1)
-                val sdCardPath = Environment.getExternalStorageDirectory()
-                val dirs = File(Environment.getExternalStorageDirectory(), folder)
-                if (!dirs.exists()) {
-                    dirs.mkdirs()
-                    Log.d("CAMERA_TEST", "Directory Created")
-                }
-                container!!.buildDrawingCache()
-                val captureView = container!!.getDrawingCache()
-                val fos: FileOutputStream
-                val save: String
-                try {
-                    save = sdCardPath.path + "/" + folder + "/" + dateString + ".jpg"
-                    fos = FileOutputStream(save)
-                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos) // 캡쳐
-                    sendBroadcast(Intent(Intent.ACTION_MEDIA_MOUNTED,
-                            Uri.parse("file://" + Environment.getExternalStorageDirectory())))
-                    Log.d("********************", "*****************")
-                } catch (e: FileNotFoundException){e.printStackTrace()}
-                Toast.makeText(applicationContext, "$dateString.jpg 저장", Toast.LENGTH_LONG).show()
-            } catch (e: Exception) {
-                Log.e("Screen*************", "" + e.toString())
-            }
-        }
+
         initTensorFlowAndLoadModel()
     }
 

@@ -16,9 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Hello World"
-        android:textSize="25dp"
-        android:textColor="#ffffff"
-        android:textStyle="bold" />
+        android:textColor="#ffffff" />
 
 
 

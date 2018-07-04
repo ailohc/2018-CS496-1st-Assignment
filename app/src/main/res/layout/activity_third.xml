@@ -56,17 +56,6 @@
         android:textColor="@android:color/white"
         android:background="#00FFFFFF"/>
 
-    <Button
-        android:id="@+id/btnCaptureImage"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_above="@+id/btnDetectObject"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom|center"
-        android:background="#00FFFFFF"
-        android:text="Capture Image"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white" />
 
 
 </RelativeLayout>
