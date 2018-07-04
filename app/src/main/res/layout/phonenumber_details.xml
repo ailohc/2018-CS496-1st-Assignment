@@ -44,5 +44,10 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/text_size_14" />
 
-
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:background="@drawable/phone_call" />
 </LinearLayout>

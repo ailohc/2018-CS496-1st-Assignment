@@ -58,5 +58,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
 
+
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

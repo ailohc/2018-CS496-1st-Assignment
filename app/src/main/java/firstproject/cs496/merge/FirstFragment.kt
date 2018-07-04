@@ -55,7 +55,7 @@ class FirstFragment() : Fragment(), PhoneNumberAdapter.OnItemSelectedListener {
         var intent = Intent(activity, ContactDetailsActivity::class.java)
         intent.putExtra("name", selectedContact.name)
         intent.putExtra("phone", selectedContact.phone)
-        intent.putExtra("imageUrl", selectedContact.image)
+        intent.putExtra("imageUrl", selectedContact.image.toString())
         startActivity(intent)
 
     }

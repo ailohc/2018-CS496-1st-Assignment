@@ -47,6 +47,17 @@ class SplashActivity : AppCompatActivity() {
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                     MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
         }
+
+        if (checkSelfPermission(Manifest.permission.CALL_PHONE) !== PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.CALL_PHONE)) {
+            }
+
+            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
+            requestPermissions(arrayOf(Manifest.permission.CALL_PHONE),
+                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
+        }
         mDelayHandler = Handler()
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
         // Start home activity

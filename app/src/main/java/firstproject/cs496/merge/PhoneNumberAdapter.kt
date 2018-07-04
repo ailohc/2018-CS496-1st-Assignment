@@ -37,7 +37,6 @@ class PhoneNumberAdapter (val contactList: ArrayList<PhoneNumber>) : RecyclerVie
         holder.name.text = contactList[position].name
         holder.phone.text = contactList[position].phone
 
-
         Glide.with(holder.container).load(contactList[position].image).into(holder.profilePic)
 
 

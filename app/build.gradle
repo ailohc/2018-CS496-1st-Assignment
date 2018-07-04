@@ -28,6 +28,9 @@ android {
             noCompress "tflite"
         }
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {

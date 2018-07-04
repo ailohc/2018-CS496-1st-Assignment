@@ -19,6 +19,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.net.Uri
 import android.net.Uri.withAppendedPath
+import android.util.Log
 import java.io.BufferedInputStream
 
 
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val phoneNumberList = ArrayList<PhoneNumber>()
         val resolver: ContentResolver = contentResolver;
         val default_photo = BitmapFactory.decodeResource(this@MainActivity.getApplicationContext().getResources(), R.drawable.profile_pic)
-        var contactImage: String
+        var contactImage: Bitmap
         val contentResolver = this@MainActivity.getContentResolver()
         val cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null,
                 null)
@@ -69,14 +70,18 @@ class MainActivity : AppCompatActivity() {
                 val my_contact_Uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, id)
                 val photo_stream = ContactsContract.Contacts.openContactPhotoInputStream(this@MainActivity.getContentResolver(), my_contact_Uri)
                 val name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+
                 val phoneNumber = (cursor.getString(
                         cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))).toInt()
                 if (photo_stream != null) {
                     val buf = BufferedInputStream(photo_stream)
-                    contactImage = buf.toString()
+                    val btmp = BitmapFactory.decodeStream(buf)
+                    contactImage = btmp
+                    Log.d("***********", contactImage.toString())
                 }
                 else {
-                    contactImage = default_photo.toString()
+                    contactImage = default_photo
+                    Log.d("***********null", contactImage.toString())
                 }
                 if (phoneNumber > 0) {
                     val cursorPhone = contentResolver.query(
