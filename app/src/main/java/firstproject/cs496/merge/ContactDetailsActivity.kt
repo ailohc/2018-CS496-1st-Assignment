@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.phonenumber_details.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.makeCall
+import org.jetbrains.anko.sendSMS
 
 class ContactDetailsActivity : AppCompatActivity() {
 
@@ -42,6 +43,12 @@ class ContactDetailsActivity : AppCompatActivity() {
 
         button1.setOnClickListener {
             makeCall(phonecallnumber)
+        }
+
+        val button2 = findViewById<Button>(R.id.button2)
+
+        button2.setOnClickListener {
+            sendSMS(phonecallnumber, "")
         }
 
     }

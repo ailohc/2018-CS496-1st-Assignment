@@ -37,6 +37,8 @@ class SplashActivity : AppCompatActivity() {
             //callback onRequestPermissionsResult
         }
 
+
+
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
 
             if (shouldShowRequestPermissionRationale(
@@ -56,6 +58,17 @@ class SplashActivity : AppCompatActivity() {
 
             val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
             requestPermissions(arrayOf(Manifest.permission.CALL_PHONE),
+                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
+        }
+
+        if (checkSelfPermission(Manifest.permission.SEND_SMS) !== PackageManager.PERMISSION_GRANTED) {
+
+            if (shouldShowRequestPermissionRationale(
+                            Manifest.permission.SEND_SMS)) {
+            }
+
+            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
+            requestPermissions(arrayOf(Manifest.permission.SEND_SMS),
                     MY_PERMISSIONS_REQUEST_PHONE_CALL)
         }
         mDelayHandler = Handler()
