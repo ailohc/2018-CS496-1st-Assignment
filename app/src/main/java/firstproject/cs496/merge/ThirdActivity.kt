@@ -2,38 +2,17 @@ package firstproject.cs496.merge
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.support.v7.app.AppCompatActivity
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import com.wonderkiln.camerakit.*
-import kotlinx.android.synthetic.main.activity_third.*
 import java.lang.Exception
 import java.lang.RuntimeException
 import java.util.concurrent.Executors
-import android.os.Environment.getExternalStorageDirectory
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
-import android.util.Log
 import android.widget.RelativeLayout
-import java.io.*
-import java.nio.file.Files.exists
-import android.content.Intent
-import android.net.Uri
 import android.os.*
-import java.text.SimpleDateFormat
-import java.util.*
-import java.nio.file.Files.exists
-import android.widget.Toast
-
-
-
-
-
-
 
 
 class ThirdActivity : AppCompatActivity() {
@@ -54,10 +33,8 @@ class ThirdActivity : AppCompatActivity() {
         cameraView = findViewById(R.id.cameraView)
         textViewResult = findViewById(R.id.textViewResult)
         textViewResult!!.movementMethod = ScrollingMovementMethod()
-
         btnToggleCamera = findViewById(R.id.btnToggleCamera)
         btnDetectObject = findViewById(R.id.btnDetectObject)
-
 
         cameraView!!.addCameraKitListener(object : CameraKitEventListener {
             override fun onEvent(cameraKitEvent: CameraKitEvent) {
@@ -70,18 +47,13 @@ class ThirdActivity : AppCompatActivity() {
 
             override fun onImage(cameraKitImage: CameraKitImage) {
                 val v = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
-                // Vibrate for 500 milliseconds
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
                 } else {
-                    //deprecated in API 26
                     v.vibrate(500)
                 }
                 var bitmap = cameraKitImage.bitmap
-
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
-
                 val results = classifier!!.recognizeImage(bitmap)
                 var resulttext = results.toString()
                 val separate = resulttext.split("[","]","(",")","%")
@@ -93,12 +65,8 @@ class ThirdActivity : AppCompatActivity() {
 
             }
         })
-
         btnToggleCamera!!.setOnClickListener { cameraView!!.toggleFacing() }
-
         btnDetectObject!!.setOnClickListener { cameraView!!.captureImage() }
-
-
         initTensorFlowAndLoadModel()
     }
 
@@ -136,10 +104,7 @@ class ThirdActivity : AppCompatActivity() {
         runOnUiThread { btnDetectObject!!.visibility = View.VISIBLE }
     }
 
-
-
     companion object {
-
         private val MODEL_PATH = "mobilenet_quant_v1_224.tflite"
         private val LABEL_PATH = "labels.txt"
         private val INPUT_SIZE = 224

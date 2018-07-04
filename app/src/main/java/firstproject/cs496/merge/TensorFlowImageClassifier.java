@@ -4,10 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.util.Log;
-
 import org.tensorflow.lite.Interpreter;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,17 +48,9 @@ public class TensorFlowImageClassifier implements Classifier {
 
     @Override
     public List<Recognition> recognizeImage(Bitmap bitmap) {
-        Log.d("hiiiiiiii10", "123244222");
-
         ByteBuffer byteBuffer = convertBitmapToByteBuffer(bitmap);
-        Log.d("hiiiiiiii11", "123244222");
-
         byte[][] result = new byte[1][labelList.size()];
-        Log.d("hiiiiiiii12", "123244222");
-
         interpreter.run(byteBuffer, result);
-        Log.d("hiiiiiiii13", "123244222");
-
         return getSortedResult(result);
     }
 
