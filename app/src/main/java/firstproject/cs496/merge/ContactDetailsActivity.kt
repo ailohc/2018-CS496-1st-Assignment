@@ -26,9 +26,6 @@ class ContactDetailsActivity : AppCompatActivity() {
         tv_phone.text = intent.extras.getString("phone")
         var phonecallnumber = tv_phone.text
         phonecallnumber = phonecallnumber.toString()
-        val imagebtmp = intent.extras.getString("imageUrl")
-        val imageresult = StringToBitMap(imagebtmp)
-        iv_profile.setImageBitmap(imageresult)
         tv_name.onClick {
             toast(tv_name.text)
         }
@@ -37,35 +34,21 @@ class ContactDetailsActivity : AppCompatActivity() {
             toast(tv_phone.text)
         }
 
-        val button1 = findViewById<Button>(R.id.button1)
-
-        button1.setOnClickListener {
+        val callButton = findViewById<Button>(R.id.button1)
+        callButton.setOnClickListener {
             makeCall(phonecallnumber)
         }
 
-        val button2 = findViewById<Button>(R.id.button2)
-
-        button2.setOnClickListener {
+        val messageButton = findViewById<Button>(R.id.button2)
+        messageButton.setOnClickListener {
             sendSMS(phonecallnumber, "")
         }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home)
             finish()
         return true
-    }
-
-    fun StringToBitMap(encodedString: String) : Bitmap? {
-        try{
-            val encodeByte = Base64.decode(encodedString,Base64.DEFAULT)
-            val bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.size)
-            return bitmap
-        }catch(e:Exception){
-            e.message
-            return null
-        }
     }
 
 }

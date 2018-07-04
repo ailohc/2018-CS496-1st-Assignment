@@ -8,20 +8,6 @@
     android:gravity="top|center"
     android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_profile"
-        android:layout_width="@dimen/big_profile_dimen"
-        android:layout_height="@dimen/big_profile_dimen"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp"
-        android:src="@drawable/profile_pic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.195" />
-
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"

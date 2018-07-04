@@ -26,6 +26,11 @@ class ThirdActivity : AppCompatActivity() {
     private var btnCaptureImage: Button? = null
     private var cameraView: CameraView? = null
 
+    companion object {
+        private val MODEL_PATH = "mobilenet_quant_v1_224.tflite"
+        private val LABEL_PATH = "labels.txt"
+        private val INPUT_SIZE = 224
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,9 +109,5 @@ class ThirdActivity : AppCompatActivity() {
         runOnUiThread { btnDetectObject!!.visibility = View.VISIBLE }
     }
 
-    companion object {
-        private val MODEL_PATH = "mobilenet_quant_v1_224.tflite"
-        private val LABEL_PATH = "labels.txt"
-        private val INPUT_SIZE = 224
-    }
+
 }
