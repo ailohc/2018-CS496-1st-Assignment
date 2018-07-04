@@ -52,7 +52,7 @@ class ThirdActivity : AppCompatActivity() {
 
                 val results = classifier!!.recognizeImage(bitmap)
                 var resulttext = results.toString()
-                val separate = resulttext.split("[","]","(",")")
+                val separate = resulttext.split("[","]","(",")","%")
                 val toptext = "The Object might be" + separate[3] + "with " + separate[4] +" percentage"
                 textViewResult!!.text = toptext
             }
@@ -102,6 +102,8 @@ class ThirdActivity : AppCompatActivity() {
     private fun makeButtonVisible() {
         runOnUiThread { btnDetectObject!!.visibility = View.VISIBLE }
     }
+
+
 
     companion object {
 
