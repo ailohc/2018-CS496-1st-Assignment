@@ -2,12 +2,16 @@ package firstproject.cs496.merge;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.ActionBarContainer;
@@ -64,7 +68,6 @@ public class FullImageActivity extends Activity {
 
         else {
             Toast.makeText(this,"Image cursor is empty", Toast.LENGTH_LONG);
-            // imageCursor가 비었습니다.
         }
 
         imageCursor.close();
@@ -76,38 +79,21 @@ public class FullImageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_image);
 
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        // Vibrate for 500 milliseconds
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        }
+        else{
+            //deprecated in API 26
+            v.vibrate(500);
+        }
+
         Intent i = getIntent();
         int position = i.getExtras().getInt("id");
 
         getProductList();
-
-        /*
-        Product product = productList.get(position);
-
-        ImageView imageView = (ImageView) findViewById(R.id.full_image_view);
-
-        Uri imageUri = product.getImageUri();
-
-        Bitmap image = BitmapFactory.decodeFile(imageUri.getPath());
-
-        imageView.setImageBitmap(image);
-        Bitmap classifyimage = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
-        textResult = findViewById(R.id.textResult);
-
-        initTensorFlowAndLoadModel();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        List<Classifier.Recognition> results;
-
-        results = classifier.recognizeImage(classifyimage);
-
-        textResult.setText(results.toString());
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        */
 
         viewPager = findViewById(R.id.view_pager);
         adapter = new CustomSwipeAdapter(this);
