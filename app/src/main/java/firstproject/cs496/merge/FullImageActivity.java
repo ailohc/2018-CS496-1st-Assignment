@@ -1,5 +1,6 @@
 package firstproject.cs496.merge;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,9 +9,12 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.ActionBarContainer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +24,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+
 public class FullImageActivity extends Activity {
     private List<Product> productList;
     private static final String MODEL_PATH = "mobilenet_quant_v1_224.tflite";
@@ -28,6 +33,9 @@ public class FullImageActivity extends Activity {
     private TextView textResult;
     private Classifier classifier;
     private Executor executor = Executors.newSingleThreadExecutor();
+
+    ViewPager viewPager;
+    CustomSwipeAdapter adapter;
 
 
     public List<Product> getProductList(){
@@ -70,18 +78,17 @@ public class FullImageActivity extends Activity {
         return productList;
 
     }
+    @SuppressLint("WrongViewCast")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_image);
 
-        // get intent data
         Intent i = getIntent();
-
-        // Selected image id
         int position = i.getExtras().getInt("id");
-        getProductList();
-        GridViewAdapter imageAdapter = new GridViewAdapter(this,R.layout.grid_item, productList);
 
+        getProductList();
+
+        /*
         Product product = productList.get(position);
 
         ImageView imageView = (ImageView) findViewById(R.id.full_image_view);
@@ -93,6 +100,7 @@ public class FullImageActivity extends Activity {
         imageView.setImageBitmap(image);
         Bitmap classifyimage = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
         textResult = findViewById(R.id.textResult);
+
         initTensorFlowAndLoadModel();
         try {
             Thread.sleep(100);
@@ -100,10 +108,20 @@ public class FullImageActivity extends Activity {
             e.printStackTrace();
         }
         List<Classifier.Recognition> results;
+
         results = classifier.recognizeImage(classifyimage);
 
         textResult.setText(results.toString());
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+        */
+
+        viewPager = findViewById(R.id.view_pager);
+        adapter = new CustomSwipeAdapter(this);
+
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(position);
+
     }
 
     private void initTensorFlowAndLoadModel() {
