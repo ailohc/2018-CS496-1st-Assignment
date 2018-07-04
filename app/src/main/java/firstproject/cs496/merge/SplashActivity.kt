@@ -1,6 +1,7 @@
 package firstproject.cs496.merge
 
 import android.Manifest
+import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -11,11 +12,17 @@ import android.content.Intent
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+
+
 
 class SplashActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
     private val SPLASH_DELAY: Long = 5000 //3 seconds
+    val MULTIPLE_PERMISSIONS = 10;
+    val permissions = arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE, Manifest.permission.SEND_SMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     companion object {
         val PERMISSIONS_REQUEST_READ_CONTACTS = 100
@@ -30,57 +37,10 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
-                        Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS),
-                    SplashActivity.PERMISSIONS_REQUEST_READ_CONTACTS)
-            //callback onRequestPermissionsResult
-        }
-
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
-
-            if (shouldShowRequestPermissionRationale(
-                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            }
-
-            val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 10
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)
-        }
-
-        if (checkSelfPermission(Manifest.permission.CALL_PHONE) !== PackageManager.PERMISSION_GRANTED) {
-
-            if (shouldShowRequestPermissionRationale(
-                            Manifest.permission.CALL_PHONE)) {
-            }
-
-            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
-            requestPermissions(arrayOf(Manifest.permission.CALL_PHONE),
-                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
-        }
-
-        if (checkSelfPermission(Manifest.permission.SEND_SMS) !== PackageManager.PERMISSION_GRANTED) {
-
-            if (shouldShowRequestPermissionRationale(
-                            Manifest.permission.SEND_SMS)) {
-            }
-
-            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
-            requestPermissions(arrayOf(Manifest.permission.SEND_SMS),
-                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
-        }
 
 
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this, permissions, MULTIPLE_PERMISSIONS)
 
-            if (shouldShowRequestPermissionRationale(
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            }
-
-            val MY_PERMISSIONS_REQUEST_PHONE_CALL = 10
-            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    MY_PERMISSIONS_REQUEST_PHONE_CALL)
-        }
         mDelayHandler = Handler()
         mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
         // Start home activity
