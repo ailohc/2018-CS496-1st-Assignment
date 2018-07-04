@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import firstproject.cs496.merge.R
-import firstproject.cs496.merge.PhoneNumber
 import de.hdodenhof.circleimageview.CircleImageView
 import org.jetbrains.anko.sdk25.coroutines.onClick
 

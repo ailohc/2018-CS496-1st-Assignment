@@ -18,16 +18,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+
+
+
+
 public class CustomSwipeAdapter extends PagerAdapter {
-  //  private List<Product> productList;
- //   private int[] image_resources = {R.drawable.china_flag, R.drawable.south_korea, R.drawable.japan_flag};
+
     private List<Product> image_resources;
     private Context ctx;
     private LayoutInflater layoutInflater;
@@ -37,7 +39,6 @@ public class CustomSwipeAdapter extends PagerAdapter {
     private TextView textResult;
     private Classifier classifier;
     private Executor executor = Executors.newSingleThreadExecutor();
-
     public CustomSwipeAdapter(Context ctx){
         this.ctx = ctx;
     }
@@ -99,7 +100,9 @@ public class CustomSwipeAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View item_view = layoutInflater.inflate(R.layout.swipe_layout, container, false);
-        ImageView imageView = (ImageView)item_view.findViewById(R.id.image_view);
+
+        TouchImageView imageView = (TouchImageView) item_view.findViewById(R.id.image_view);
+
         TextView textView = (TextView) item_view.findViewById(R.id.image_count);
 
         Product product =image_resources.get(position);
@@ -107,9 +110,9 @@ public class CustomSwipeAdapter extends PagerAdapter {
         Uri imageUri = product.getImageUri();
         Bitmap image = BitmapFactory.decodeFile(imageUri.getPath());
         imageView.setImageBitmap(image);
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        //textView.setText("Image : " +position);
+  //      imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImageBitmap(image);
+
         Bitmap classifyimage = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
         initTensorFlowAndLoadModel();
         try {

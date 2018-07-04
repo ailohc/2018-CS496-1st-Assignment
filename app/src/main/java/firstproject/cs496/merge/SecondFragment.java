@@ -72,7 +72,6 @@ public class SecondFragment extends Fragment {
             Toast.makeText(getActivity(),"Image cursor is empty", Toast.LENGTH_LONG);
             // imageCursor가 비었습니다.
         }
-
         imageCursor.close();
 
         return productList;
@@ -81,9 +80,8 @@ public class SecondFragment extends Fragment {
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("hiiiii5", "124344");
-        final View rootview = inflater.inflate(R.layout.fragment_second, container, false);
 
+        final View rootview = inflater.inflate(R.layout.fragment_second, container, false);
         imgPicture = (ImageView) rootview.findViewById(R.id.imgPicture);
 
                 stubGrid = (ViewStub) rootview.findViewById(R.id.stub_grid);
@@ -94,14 +92,11 @@ public class SecondFragment extends Fragment {
                 gridViewAdapter = new GridViewAdapter(getActivity(), R.layout.grid_item, productList);
                 gridView.setAdapter(gridViewAdapter);
                 stubGrid.setVisibility(View.VISIBLE);
-                Log.d("hiiiii20", "124344");
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                        Log.d("hiiiii21", "124344");
                         Intent i = new Intent(getActivity(), FullImageActivity.class);
                         i.putExtra("id", position);
-                        Log.d("hiiiii22", "124344");
                         startActivity(i);
                     }
                 });

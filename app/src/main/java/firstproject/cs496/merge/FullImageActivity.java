@@ -95,11 +95,13 @@ public class FullImageActivity extends Activity {
 
         getProductList();
 
+
         viewPager = findViewById(R.id.view_pager);
         adapter = new CustomSwipeAdapter(this);
 
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position);
+        viewPager.setOffscreenPageLimit(1);
 
     }
 
