@@ -20,7 +20,7 @@ import android.support.v4.content.ContextCompat
 class SplashActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 5000 //3 seconds
+    private val SPLASH_DELAY: Long = 3000 //3 seconds
     val MULTIPLE_PERMISSIONS = 10;
     val permissions = arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CALL_PHONE, Manifest.permission.SEND_SMS, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 

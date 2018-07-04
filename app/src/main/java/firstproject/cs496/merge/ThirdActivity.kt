@@ -85,7 +85,7 @@ class ThirdActivity : AppCompatActivity() {
                 val results = classifier!!.recognizeImage(bitmap)
                 var resulttext = results.toString()
                 val separate = resulttext.split("[","]","(",")","%")
-                val toptext = "The Object might be" + separate[3] + "with " + separate[4] +" percentage"
+                val toptext =  separate[3] + " , " + separate[4]
                 textViewResult!!.text = toptext
             }
 
