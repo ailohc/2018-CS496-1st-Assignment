@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ import java.util.List;
 
 public class SecondFragment extends Fragment {
 
-    public static final int IMAGE_GALLERY_REQUEST = 20;
+  //  public static final int IMAGE_GALLERY_REQUEST = 20;
     private ViewStub stubGrid;
     private GridView gridView;
     private GridViewAdapter gridViewAdapter;
@@ -79,7 +81,7 @@ public class SecondFragment extends Fragment {
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("hi5", "124344");
+        Log.d("hiiiii5", "124344");
         final View rootview = inflater.inflate(R.layout.fragment_second, container, false);
 
         imgPicture = (ImageView) rootview.findViewById(R.id.imgPicture);
@@ -92,12 +94,14 @@ public class SecondFragment extends Fragment {
                 gridViewAdapter = new GridViewAdapter(getActivity(), R.layout.grid_item, productList);
                 gridView.setAdapter(gridViewAdapter);
                 stubGrid.setVisibility(View.VISIBLE);
-
+                Log.d("hiiiii20", "124344");
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        Log.d("hiiiii21", "124344");
                         Intent i = new Intent(getActivity(), FullImageActivity.class);
                         i.putExtra("id", position);
+                        Log.d("hiiiii22", "124344");
                         startActivity(i);
                     }
                 });
