@@ -65,7 +65,21 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center"
         android:background="#00FFFFFF"
-        android:text="Capture Result"
+        android:text="Capture Image"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+
+    <Button
+        android:id="@+id/btnSaveResult"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="78dp"
+        android:background="#00FFFFFF"
+        android:text="Save Result"
         android:textAllCaps="false"
         android:textColor="@android:color/white" />
 

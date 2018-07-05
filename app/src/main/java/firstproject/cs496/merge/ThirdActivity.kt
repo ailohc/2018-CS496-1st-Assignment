@@ -30,7 +30,9 @@ class ThirdActivity : AppCompatActivity() {
     private var btnDetectObject: Button? = null
     private var btnToggleCamera: Button? = null
     private var btnCaptureImage: Button? = null
+    private var btnSaveResult: Button? = null
     private var cameraView: CameraView? = null
+    private var SaveImage: Bitmap? = null
 
     companion object {
         private val MODEL_PATH = "mobilenet_quant_v1_224.tflite"
@@ -48,6 +50,7 @@ class ThirdActivity : AppCompatActivity() {
         btnToggleCamera = findViewById(R.id.btnToggleCamera)
         btnDetectObject = findViewById(R.id.btnDetectObject)
         btnCaptureImage = findViewById(R.id.btnCaptureImage)
+        btnSaveResult = findViewById(R.id.btnSaveResult)
 
 
         cameraView!!.addCameraKitListener(object : CameraKitEventListener {
@@ -67,6 +70,7 @@ class ThirdActivity : AppCompatActivity() {
                     v.vibrate(500)
                 }
                 var bitmap = cameraKitImage.bitmap
+                SaveImage = bitmap
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
                 val results = classifier!!.recognizeImage(bitmap)
                 var resulttext = results.toString()
@@ -82,6 +86,30 @@ class ThirdActivity : AppCompatActivity() {
         btnToggleCamera!!.setOnClickListener { cameraView!!.toggleFacing() }
         btnDetectObject!!.setOnClickListener { cameraView!!.captureImage() }
         btnCaptureImage!!.setOnClickListener {
+            val content = findViewById<RelativeLayout>(R.id.activity_third)
+            val random = Random()
+            val yourimagename = random.nextInt().toString()
+            content!!.setDrawingCacheEnabled(true)
+            val bitmap = SaveImage
+            val dir = Environment.getExternalStorageDirectory().toString()+"/DCIM/Capture/"
+            val myDir = File(dir)
+            myDir.mkdirs()
+            val fname = yourimagename+".PNG"
+            val myFile = File(myDir, fname)
+            if (myFile.exists()) myFile.delete()
+            try {
+                val ostream = FileOutputStream(myFile)
+                bitmap?.compress(CompressFormat.PNG, 10, ostream)
+                ostream.close()
+                ostream.flush()
+                content.invalidate()
+                toast("Saved!")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+        btnSaveResult!!.setOnClickListener {
             val content = findViewById<RelativeLayout>(R.id.activity_third)
             val random = Random()
             val yourimagename = random.nextInt().toString()
