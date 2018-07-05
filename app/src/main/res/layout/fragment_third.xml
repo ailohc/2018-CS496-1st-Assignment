@@ -9,7 +9,7 @@ tools:context="firstproject.cs496.merge.ThirdFragment">
     <Button
         android:id="@+id/button1"
         android:layout_width="301dp"
-        android:layout_height="312dp"
+        android:layout_height="339dp"
         android:layout_marginBottom="151dp"
         android:layout_marginEnd="148dp"
         android:layout_marginStart="148dp"
@@ -19,13 +19,14 @@ tools:context="firstproject.cs496.merge.ThirdFragment">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/start"
         android:layout_width="278dp"
-        android:layout_height="191dp"
+        android:layout_height="264dp"
         android:layout_marginBottom="450dp"
         android:layout_marginEnd="42dp"
         android:layout_marginStart="42dp"
@@ -34,8 +35,21 @@ tools:context="firstproject.cs496.merge.ThirdFragment">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.504"
+        app:layout_constraintVertical_bias="0.574"
         tools:ignore="MissingConstraints" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="106dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="620dp"
+        android:background="@drawable/clickk"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.527" />
 
 </android.support.constraint.ConstraintLayout>
 
