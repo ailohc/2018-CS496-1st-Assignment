@@ -27,7 +27,6 @@ import java.util.List;
 
 public class SecondFragment extends Fragment {
 
-  //  public static final int IMAGE_GALLERY_REQUEST = 20;
     private ViewStub stubGrid;
     private GridView gridView;
     private GridViewAdapter gridViewAdapter;
@@ -39,7 +38,6 @@ public class SecondFragment extends Fragment {
     public List<Product> getProductList(){
 
         String[] projection = { MediaStore.Images.Media.DATA };
-
         Cursor imageCursor = getActivity().getContentResolver().query(
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI, // 이미지 컨텐트 테이블
                 projection, // DATA를 출력
@@ -67,10 +65,8 @@ public class SecondFragment extends Fragment {
             }
             while(imageCursor.moveToNext());
         }
-
         else {
             Toast.makeText(getActivity(),"Image cursor is empty", Toast.LENGTH_LONG);
-            // imageCursor가 비었습니다.
         }
         imageCursor.close();
 
@@ -101,11 +97,8 @@ public class SecondFragment extends Fragment {
                     }
                 });
 
-
-
         return rootview;
     }
-
 }
 
 
