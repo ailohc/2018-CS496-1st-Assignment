@@ -74,19 +74,17 @@ public class FullImageActivity extends Activity {
         return productList;
 
     }
+
     @SuppressLint("WrongViewCast")
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_image);
 
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-        // Vibrate for 500 milliseconds
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
         }
         else{
-            //deprecated in API 26
             v.vibrate(500);
         }
 
@@ -95,15 +93,15 @@ public class FullImageActivity extends Activity {
 
         getProductList();
 
-
         viewPager = findViewById(R.id.view_pager);
         adapter = new CustomSwipeAdapter(this);
-
+      //  viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position);
-        viewPager.setOffscreenPageLimit(1);
+
 
     }
+
 
 }
 

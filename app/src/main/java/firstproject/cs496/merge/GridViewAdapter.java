@@ -29,17 +29,15 @@ public class GridViewAdapter extends ArrayAdapter<Product> {
         if(null == v){
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.grid_item, null);
-
         }
+
         Product product = getItem(position);
-
-
         ImageView img = (ImageView) v.findViewById(R.id.imageView);
         TextView txt = (TextView) v.findViewById(R.id.txtTitle);
 
         Uri imageUri = product.getImageUri();
-
         Bitmap image = BitmapFactory.decodeFile(imageUri.getPath());
+
         img.setImageBitmap(image);
         txt.setText(product.getFileName());
 
