@@ -4,8 +4,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-tools:context="firstproject.cs496.merge.ThirdFragment"
-    android:background="#FFFFFF">
+tools:context="firstproject.cs496.merge.ThirdFragment">
 <!--todo -->
     <Button
         android:id="@+id/button1"
@@ -23,20 +22,27 @@ tools:context="firstproject.cs496.merge.ThirdFragment"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <pl.droidsonroids.gif.GifImageView
+    <TextView
         android:id="@+id/start"
-        android:layout_width="278dp"
-        android:layout_height="191dp"
-        android:layout_marginBottom="450dp"
+        android:layout_width="300dp"
+        android:layout_height="313dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="150dp"
         android:layout_marginEnd="42dp"
         android:layout_marginStart="42dp"
-        android:background="@drawable/button"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/oval"
+        android:gravity="center"
+        android:text="START
+            CLASSIFYING"
+        android:textColor="#D9C182B6"
+        android:textSize="15pt"
+        android:textStyle="bold"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.504"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

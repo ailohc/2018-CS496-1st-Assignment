@@ -14,8 +14,7 @@
         android:id="@+id/cameraView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_gravity="center|top" />
 
 
@@ -25,23 +24,24 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="59dp"
+        android:layout_marginBottom="120dp"
         android:fadeScrollbars="false"
         android:gravity="center"
+        android:textSize="20dp"
         android:maxLines="15"
         android:scrollbars="vertical"
-        android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textColor="@android:color/white" />
 
 
     <Button
         android:id="@+id/btnToggleCamera"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_alignTop="@+id/cameraView"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center"
-        android:background="@drawable/switch_camera"
+        android:background="#00FFFFFF"
+        android:text="@string/toggle_camera"
         android:textAllCaps="false"
         android:textColor="@android:color/white" />
 
@@ -49,39 +49,13 @@
         android:id="@+id/btnDetectObject"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/cameraView"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="134dp"
-        android:background="#00FFFFFF"
         android:text="@string/detect_object"
         android:textAllCaps="false"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/btnCaptureImage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/cameraView"
-        android:layout_gravity="bottom|center"
-        android:layout_marginStart="94dp"
-        android:background="@drawable/buttonpic"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white" />
-
-
-    <Button
-        android:id="@+id/btnSaveResult"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_alignBottom="@+id/cameraView"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="bottom|center"
-        android:layout_marginEnd="94dp"
-        android:background="@drawable/save_file"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:background="#00FFFFFF"/>
 
 
 
