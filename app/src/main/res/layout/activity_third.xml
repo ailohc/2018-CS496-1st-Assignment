@@ -14,7 +14,8 @@
         android:id="@+id/cameraView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center|top" />
 
 
@@ -22,15 +23,14 @@
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/btnDetectObject"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="120dp"
         android:fadeScrollbars="false"
         android:gravity="center"
-        android:textSize="20dp"
         android:maxLines="15"
         android:scrollbars="vertical"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
 
 
     <Button
@@ -49,13 +49,25 @@
         android:id="@+id/btnDetectObject"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_alignBottom="@+id/cameraView"
+        android:layout_above="@+id/btnCaptureImage"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom|center"
+        android:background="#00FFFFFF"
         android:text="@string/detect_object"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:background="#00FFFFFF"/>
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnCaptureImage"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center"
+        android:background="#00FFFFFF"
+        android:text="Capture Result"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
 
 
 

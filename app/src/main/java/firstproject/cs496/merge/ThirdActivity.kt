@@ -13,6 +13,12 @@ import java.lang.RuntimeException
 import java.util.concurrent.Executors
 import android.widget.RelativeLayout
 import android.os.*
+import android.graphics.Bitmap.CompressFormat
+import org.jetbrains.anko.toast
+import java.io.File
+import java.io.FileOutputStream
+import java.nio.file.Files.exists
+import java.util.*
 
 
 class ThirdActivity : AppCompatActivity() {
@@ -37,9 +43,12 @@ class ThirdActivity : AppCompatActivity() {
         setContentView(R.layout.activity_third)
         cameraView = findViewById(R.id.cameraView)
         textViewResult = findViewById(R.id.textViewResult)
+        container = findViewById(R.id.activity_third)
         textViewResult!!.movementMethod = ScrollingMovementMethod()
         btnToggleCamera = findViewById(R.id.btnToggleCamera)
         btnDetectObject = findViewById(R.id.btnDetectObject)
+        btnCaptureImage = findViewById(R.id.btnCaptureImage)
+
 
         cameraView!!.addCameraKitListener(object : CameraKitEventListener {
             override fun onEvent(cameraKitEvent: CameraKitEvent) {
@@ -72,6 +81,30 @@ class ThirdActivity : AppCompatActivity() {
         })
         btnToggleCamera!!.setOnClickListener { cameraView!!.toggleFacing() }
         btnDetectObject!!.setOnClickListener { cameraView!!.captureImage() }
+        btnCaptureImage!!.setOnClickListener {
+            val content = findViewById<RelativeLayout>(R.id.activity_third)
+            val random = Random()
+            val yourimagename = random.nextInt().toString()
+            content!!.setDrawingCacheEnabled(true)
+            val bitmap = content.getDrawingCache()
+            val dir = Environment.getExternalStorageDirectory().toString()+"/DCIM/Capture/"
+            val myDir = File(dir)
+            myDir.mkdirs()
+            val fname = yourimagename+".PNG"
+            val myFile = File(myDir, fname)
+            if (myFile.exists()) myFile.delete()
+            try {
+                val ostream = FileOutputStream(myFile)
+                bitmap?.compress(CompressFormat.PNG, 10, ostream)
+                ostream.close()
+                ostream.flush()
+                content.invalidate()
+                toast("Saved!")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
         initTensorFlowAndLoadModel()
     }
 
